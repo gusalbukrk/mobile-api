@@ -1,0 +1,50 @@
+GET http://localhost:8081/api
+
+###
+
+POST http://localhost:8081/api/buyers
+Content-Type: application/json
+
+{
+  "email": "u1@gmail.com",
+  "password": "pass1",
+  "cpf": "111.222.333-44"
+}
+
+###
+
+POST http://localhost:8081/api/sellers
+Content-Type: application/json
+
+{
+  "email": "u2@gmail.com",
+  "password": "pass2",
+  "cnpj": "11.222.333/0001-44"
+}
+
+###
+
+GET http://localhost:8081/api/buyers
+
+###
+
+GET http://localhost:8081/api/sellers
+
+###
+
+GET http://localhost:8081/api/users
+
+###
+
+GET http://localhost:8081/api/users/1
+
+###
+
+# expected to receive 405 HTTP error response
+POST http://localhost:8081/api/users
+Content-Type: application/json
+
+{
+  "email": "u2@gmail.com",
+  "password": "pass2"
+}
