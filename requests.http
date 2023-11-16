@@ -115,3 +115,30 @@ http://localhost:8081/api/seller/2
 # Content-Type:text/uri-list
 
 # http://localhost:8081/api/listings/2
+
+###
+
+GET http://localhost:8081/api/purchases
+
+###
+
+GET http://localhost:8081/api/purchases/1
+
+###
+
+POST http://localhost:8081/api/purchases
+Content-Type: application/json
+
+{
+  "total": 3.14,
+  "date": "2023-11-15",
+  "buyer": "http://localhost:8081/api/buyers/1"
+}
+
+###
+
+GET http://localhost:8081/api/purchases/1/buyer
+
+###
+
+GET http://localhost:8081/api/buyers/1/purchases

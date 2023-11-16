@@ -1,7 +1,10 @@
 package com.gusalbukrk.demo.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import lombok.Getter;
 
@@ -11,4 +14,7 @@ import lombok.Getter;
 public class Buyer extends User {
   @Column(nullable = false, unique = true)
   private String cpf;
+
+  @OneToMany(mappedBy = "buyer")
+  private List<Purchase> purchases;
 }
