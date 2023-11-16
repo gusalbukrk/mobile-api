@@ -193,3 +193,58 @@ GET http://localhost:8081/api/categories/1/subcategories
 ###
 
 GET http://localhost:8081/api/categories/3/parent
+
+### 
+
+GET http://localhost:8081/api/tags
+
+###
+
+POST http://localhost:8081/api/tags
+Content-Type: application/json
+
+{
+  "name": "Tag 1"
+}
+
+###
+
+POST http://localhost:8081/api/tags
+Content-Type: application/json
+
+{
+  "name": "Tag 2"
+}
+
+###
+
+POST http://localhost:8081/api/tags
+Content-Type: application/json
+
+{
+  "name": "Tag 3"
+}
+
+###
+
+PUT http://localhost:8081/api/listings/1/tags
+Content-Type:text/uri-list
+
+http://localhost:8081/api/tags/1
+http://localhost:8081/api/tags/3
+
+###
+
+GET http://localhost:8081/api/listings/1/tags
+
+###
+
+GET http://localhost:8081/api/tags/1/listings
+
+###
+
+# insertion on inverse (add listing to tag instead of adding tag to listing) won't work
+# PUT http://localhost:8081/api/tags/2/listings
+# Content-Type:text/uri-list
+
+# http://localhost:8081/api/listings/1
