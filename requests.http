@@ -142,3 +142,54 @@ GET http://localhost:8081/api/purchases/1/buyer
 ###
 
 GET http://localhost:8081/api/buyers/1/purchases
+
+###
+
+GET http://localhost:8081/api/categories
+
+###
+
+POST http://localhost:8081/api/categories
+Content-Type: application/json
+
+{
+  "name": "Category 1"
+}
+
+###
+
+POST http://localhost:8081/api/categories
+Content-Type: application/json
+
+{
+  "name": "Category 2",
+  "parent": "http://localhost:8081/api/categories/1"
+}
+
+###
+
+POST http://localhost:8081/api/categories
+Content-Type: application/json
+
+{
+  "name": "Category 2b",
+  "parent": "http://localhost:8081/api/categories/1"
+}
+
+###
+
+POST http://localhost:8081/api/categories
+Content-Type: application/json
+
+{
+  "name": "Category 3",
+  "parent": "http://localhost:8081/api/categories/2"
+}
+
+###
+
+GET http://localhost:8081/api/categories/1/subcategories
+
+###
+
+GET http://localhost:8081/api/categories/3/parent
