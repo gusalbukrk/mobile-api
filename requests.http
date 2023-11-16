@@ -60,3 +60,58 @@ Content-Type: application/json
   "email": "u2@gmail.com",
   "password": "pass2"
 }
+
+###
+
+GET http://localhost:8081/api/listings
+
+###
+
+GET http://localhost:8081/api/listings/1
+
+###
+
+POST http://localhost:8081/api/listings
+Content-Type: application/json
+
+{
+  "name": "Listing 1",
+  "price": 3.14,
+  "quantity": 10,
+  "seller": "http://localhost:8081/api/seller/2"
+}
+
+###
+
+GET http://localhost:8081/api/listings/1/seller
+
+###
+
+GET http://localhost:8081/api/sellers/2/listings
+
+###
+
+POST http://localhost:8081/api/listings
+Content-Type: application/json
+
+{
+  "name": "Listing 2",
+  "price": 4.99,
+  "quantity": 5
+}
+
+###
+
+PUT http://localhost:8081/api/listings/2/seller
+Content-Type:text/uri-list
+
+http://localhost:8081/api/seller/2
+
+###
+
+# inverse (insertion in listings) doesn't work (insertion in seller does)
+
+# POST http://localhost:8081/api/sellers/2/listings
+# Content-Type:text/uri-list
+
+# http://localhost:8081/api/listings/2
