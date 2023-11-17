@@ -259,3 +259,7 @@ GET http://localhost:8081/api/tags/1/listings
 # Content-Type:text/uri-list
 
 # http://localhost:8081/api/listings/1
+
+###
+
+GET http://localhost:8081/api/listingPurchases

@@ -10,11 +10,13 @@ import org.springframework.stereotype.Component;
 import com.gusalbukrk.demo.model.Buyer;
 import com.gusalbukrk.demo.model.Category;
 import com.gusalbukrk.demo.model.Listing;
+import com.gusalbukrk.demo.model.ListingPurchase;
 import com.gusalbukrk.demo.model.Purchase;
 import com.gusalbukrk.demo.model.Seller;
 import com.gusalbukrk.demo.model.Tag;
 import com.gusalbukrk.demo.repository.BuyerRepository;
 import com.gusalbukrk.demo.repository.CategoryRepository;
+import com.gusalbukrk.demo.repository.ListingPurchaseRepository;
 import com.gusalbukrk.demo.repository.ListingRepository;
 import com.gusalbukrk.demo.repository.PurchaseRepository;
 import com.gusalbukrk.demo.repository.SellerRepository;
@@ -31,6 +33,7 @@ public class DataLoader implements CommandLineRunner {
   private CategoryRepository categoryRepository;
   private TagRepository tagRepository;
   private PurchaseRepository purchaseRepository;
+  private ListingPurchaseRepository listingPurchaseRepository;
 
   public void run(String ...args) throws Exception {
     Buyer buyer1 = Buyer.builder().email("buyer1@gmail.com").password("pass").cpf("000.111.222-33").build();
@@ -45,7 +48,9 @@ public class DataLoader implements CommandLineRunner {
     // using this approach, POJO creation requires explicitly setting id which is incorrect because
     // the id must be auto-generated
     // Listing listing1 = new Listing(2, "Listing 1", null, 3.14F, 10, seller1, Collections.<Tag>emptyList(), Collections.<ListingPurchase>emptyList());
-    Listing listing1 = Listing.builder().name("Listing 1").price(3.14F).quantity(10).seller(seller1).build();
+    Listing listing1 = Listing.builder().name("Listing 1").description("Listing 1 description").price(3.14F).quantity(10).seller(seller1).build();
+    Listing listing2 = Listing.builder().name("Listing 2").price(4.99F).quantity(5).seller(seller1).build();
+    Listing listing3 = Listing.builder().name("Listing 3").price(9.99F).quantity(1).seller(seller1).build();
 
     Tag tag1 = Tag.builder().name("Tag 1").build();
     Tag tag2 = Tag.builder().name("Tag 2").build();
@@ -68,11 +73,15 @@ public class DataLoader implements CommandLineRunner {
     cal.set(Calendar.DATE, 17);
     Purchase purchase1 = Purchase.builder().date(new Date(cal.getTimeInMillis())).total(9.99F).buyer(buyer1).build();
 
+    ListingPurchase listingPurchase1 = ListingPurchase.builder().purchase(purchase1).quantity(2).listing(listing1).build();
+    ListingPurchase listingPurchase2 = ListingPurchase.builder().purchase(purchase1).quantity(5).listing(listing3).build();
+
     buyerRepository.save(buyer1);
     sellerRepository.save(seller1);
-    listingRepository.save(listing1);
+    listingRepository.saveAll(List.of(listing1, listing2, listing3));
     tagRepository.saveAll(List.of(tag1, tag2, tag3));
     categoryRepository.saveAll(List.of(cat1, cat2, cat3));
     purchaseRepository.save(purchase1);
+    listingPurchaseRepository.saveAll(List.of(listingPurchase1, listingPurchase2));
   }
 }
