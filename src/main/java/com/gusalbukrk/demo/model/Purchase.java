@@ -1,6 +1,7 @@
 package com.gusalbukrk.demo.model;
 
 import java.sql.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,12 +10,19 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Getter
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor // https://stackoverflow.com/a/35602246 https://stackoverflow.com/a/51122581
 public class Purchase {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,4 +38,7 @@ public class Purchase {
   @ManyToOne
   @JoinColumn(referencedColumnName = "user_id") 
   private Buyer buyer;
+
+  @OneToMany(mappedBy = "purchase")
+  private List<ListingPurchase> listingsPurchase;
 }

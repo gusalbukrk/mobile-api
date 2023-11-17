@@ -194,7 +194,7 @@ GET http://localhost:8081/api/categories/1/subcategories
 
 GET http://localhost:8081/api/categories/3/parent
 
-### 
+###
 
 GET http://localhost:8081/api/tags
 

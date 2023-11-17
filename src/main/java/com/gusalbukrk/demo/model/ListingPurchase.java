@@ -6,11 +6,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.ManyToOne;
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @IdClass(ListingPurchaseId.class)
-@Getter
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor // https://stackoverflow.com/a/35602246 https://stackoverflow.com/a/51122581
 public class ListingPurchase {
   // @Id
   // @GeneratedValue(strategy = GenerationType.IDENTITY)

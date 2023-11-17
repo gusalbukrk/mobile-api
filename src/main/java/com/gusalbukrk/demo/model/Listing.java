@@ -2,6 +2,7 @@ package com.gusalbukrk.demo.model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,10 +12,17 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import lombok.Getter;
+import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Getter
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor // https://stackoverflow.com/a/35602246 https://stackoverflow.com/a/51122581
 public class Listing {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,11 +43,14 @@ public class Listing {
   @JoinColumn(referencedColumnName = "user_id") 
   private Seller seller;
 
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.PERSIST)
   @JoinTable(
     name = "listing_tag",
     joinColumns = @JoinColumn(name = "listing_id"),
     inverseJoinColumns = @JoinColumn(name = "tag_id")
   )
   private List<Tag> tags;
+
+  @OneToMany(mappedBy = "listing")
+  private List<ListingPurchase> listingPurchases;
 }
