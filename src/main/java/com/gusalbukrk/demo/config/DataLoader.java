@@ -60,13 +60,13 @@ public class DataLoader implements CommandLineRunner {
     Category cat2 = Category.builder().name("Category 2").parent(cat1).build();
     Category cat3 = Category.builder().name("Category 3").parent(cat2).build();
 
+    listing1.setCategory(cat3);
+
     Calendar cal = Calendar.getInstance();
     cal.set(Calendar.YEAR, 2022);
     cal.set(Calendar.MONTH, 11);
     cal.set(Calendar.DATE, 17);
     Purchase purchase1 = Purchase.builder().date(new Date(cal.getTimeInMillis())).total(9.99F).buyer(buyer1).build();
-
-
 
     buyerRepository.save(buyer1);
     sellerRepository.save(seller1);

@@ -2,6 +2,7 @@ package com.gusalbukrk.demo.model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,9 +28,12 @@ public class Category {
   @Column(nullable = false) 
   private String name;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.PERSIST)
   private Category parent;
 
   @OneToMany(mappedBy = "parent")
   private List<Category> subcategories;
+
+  @OneToMany(mappedBy = "category")
+  private List<Listing> listings;
 }

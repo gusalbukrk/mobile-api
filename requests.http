@@ -196,6 +196,17 @@ GET http://localhost:8081/api/categories/3/parent
 
 ###
 
+GET http://localhost:8081/api/listings/1/category
+
+###
+
+PUT http://localhost:8081/api/listings/1/category
+Content-Type:text/uri-list
+
+http://localhost:8081/api/categories/3
+
+### 
+
 GET http://localhost:8081/api/tags
 
 ###

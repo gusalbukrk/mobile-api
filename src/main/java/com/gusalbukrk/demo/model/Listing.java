@@ -53,4 +53,7 @@ public class Listing {
 
   @OneToMany(mappedBy = "listing")
   private List<ListingPurchase> listingPurchases;
+
+  @ManyToOne(cascade = CascadeType.PERSIST)
+  private Category category;
 }
