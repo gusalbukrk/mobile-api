@@ -52,7 +52,7 @@ public class Listing {
   private List<Tag> tags;
 
   @OneToMany(mappedBy = "listing")
-  private List<ListingPurchase> listingPurchases;
+  private List<OrderListing> ordersListing;
 
   @ManyToOne(cascade = CascadeType.PERSIST)
   private Category category;

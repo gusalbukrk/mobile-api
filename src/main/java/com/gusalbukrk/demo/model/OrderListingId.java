@@ -1,4 +1,4 @@
-package com.gusalbukrk.demo.config;
+package com.gusalbukrk.demo.model;
 
 import java.io.Serializable;
 
@@ -18,10 +18,10 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode
 @Builder
-public class ListingPurchaseId implements Serializable {
+public class OrderListingId implements Serializable {
+  @Column(name = "order_id")
+  private long orderId;
+
   @Column(name = "listing_id")
   private long listingId;
-
-  @Column(name = "purchase_id")
-  private long purchaseId;
 }

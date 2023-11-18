@@ -24,5 +24,5 @@ public class Buyer extends User {
   private String cpf;
 
   @OneToMany(mappedBy = "buyer")
-  private List<Purchase> purchases;
+  private List<Order> orders;
 }
