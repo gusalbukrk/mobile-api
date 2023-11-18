@@ -51,7 +51,7 @@ public class Listing {
   )
   private List<Tag> tags;
 
-  @OneToMany(mappedBy = "listing")
+  @OneToMany(mappedBy = "id.listing")
   private List<ListingPurchase> listingPurchases;
 
   @ManyToOne(cascade = CascadeType.PERSIST)

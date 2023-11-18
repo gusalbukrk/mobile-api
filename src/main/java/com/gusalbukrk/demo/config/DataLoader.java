@@ -73,8 +73,14 @@ public class DataLoader implements CommandLineRunner {
     cal.set(Calendar.DATE, 17);
     Purchase purchase1 = Purchase.builder().date(new Date(cal.getTimeInMillis())).total(9.99F).buyer(buyer1).build();
 
-    ListingPurchase listingPurchase1 = ListingPurchase.builder().purchase(purchase1).quantity(2).listing(listing1).build();
-    ListingPurchase listingPurchase2 = ListingPurchase.builder().purchase(purchase1).quantity(5).listing(listing3).build();
+    ListingPurchaseId listingPurchaseId1 = ListingPurchaseId.builder().purchase(purchase1).listing(listing1).build();
+    ListingPurchaseId listingPurchaseId2 = ListingPurchaseId.builder().purchase(purchase1).listing(listing3).build();
+    //
+    ListingPurchase listingPurchase1 = ListingPurchase.builder().id(listingPurchaseId1).quantity(2).build();
+    ListingPurchase listingPurchase2 = ListingPurchase.builder().id(listingPurchaseId2).quantity(5).build();
+
+    // ListingPurchase listingPurchase1 = ListingPurchase.builder().purchase(purchase1).quantity(2).listing(listing1).build();
+    // ListingPurchase listingPurchase2 = ListingPurchase.builder().purchase(purchase1).quantity(5).listing(listing3).build();
 
     buyerRepository.save(buyer1);
     sellerRepository.save(seller1);
