@@ -2,11 +2,8 @@ package com.gusalbukrk.demo.config;
 
 import java.io.Serializable;
 
-import com.gusalbukrk.demo.model.Listing;
-import com.gusalbukrk.demo.model.Purchase;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -20,9 +17,9 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 @Builder
 public class ListingPurchaseId implements Serializable {
-  @ManyToOne
-  private Listing listing;
+  @Column(name = "listing_id")
+  private long listingId;
 
-  @ManyToOne
-  private Purchase purchase;
+  @Column(name = "purchase_id")
+  private long purchaseId;
 }

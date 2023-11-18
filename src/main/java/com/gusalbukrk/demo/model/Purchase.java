@@ -39,6 +39,6 @@ public class Purchase {
   @JoinColumn(referencedColumnName = "user_id") 
   private Buyer buyer;
 
-  @OneToMany(mappedBy = "id.purchase")
+  @OneToMany(mappedBy = "purchase")
   private List<ListingPurchase> listingsPurchase;
 }
