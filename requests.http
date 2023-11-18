@@ -266,4 +266,17 @@ GET http://localhost:8081/api/listingPurchases
 
 ###
 
+GET http://localhost:8081/api/listingPurchases/1-1
 
+###
+
+POST http://localhost:8081/api/listingPurchases
+Content-Type: application/json
+
+{
+  "id": {
+    "listingId": 2,
+    "purchaseId": 1
+  },
+  "quantity": 1
+}
