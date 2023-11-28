@@ -63,6 +63,10 @@ Content-Type: application/json
 
 ###
 
+GET http://localhost:8081/api/users/search/findByEmailAndPassword?email=buyer1@gmail.com&password=pass
+
+###
+
 GET http://localhost:8081/api/listings
 
 ###

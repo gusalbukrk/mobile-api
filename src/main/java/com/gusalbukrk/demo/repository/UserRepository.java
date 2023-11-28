@@ -15,4 +15,6 @@ public interface UserRepository extends Repository<User, Long> {
   Optional<User> findById(Long id);
 
   List<User> findAll();
+
+  Optional<User> findByEmailAndPassword(String email, String password);
 }
