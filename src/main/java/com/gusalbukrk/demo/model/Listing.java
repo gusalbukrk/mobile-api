@@ -13,6 +13,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -56,4 +57,15 @@ public class Listing {
 
   @ManyToOne(cascade = CascadeType.PERSIST)
   private Category category;
+
+  @ManyToMany(cascade = CascadeType.PERSIST)
+  @JoinTable(
+    name = "listing_image",
+    joinColumns = @JoinColumn(name = "listing_id"),
+    inverseJoinColumns = @JoinColumn(name = "image_id"),
+
+    // ensures that the combination of listing_id and image_id is unique in the table
+    uniqueConstraints = @UniqueConstraint(columnNames = {"listing_id", "image_id"})
+  )
+  private List<ImageFile> images;
 }

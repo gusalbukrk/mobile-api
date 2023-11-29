@@ -338,4 +338,20 @@ GET http://localhost:8081/api/images
 
 ###
 
-GET http://localhost:8081/api/images/fc9b278b-57f8-4fdc-a5d5-50c3b97c174e.webp
+GET http://localhost:8081/api/images/1
+
+###
+
+GET http://localhost:8081/api/images/findByName/ffec7d2a-ded3-4158-b26f-9fcdb51dc625.webp
+
+###
+
+GET http://localhost:8081/api/listings/1/images
+
+###
+
+POST http://localhost:8081/api/listings/1/images
+Content-Type:text/uri-list
+
+http://localhost:8081/api/images/1
+# http://localhost:8081/api/images/2

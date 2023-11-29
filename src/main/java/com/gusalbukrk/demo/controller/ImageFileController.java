@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/images")
@@ -37,7 +38,12 @@ public class ImageFileController {
         .body(uploadImage);
   }
 
-  @GetMapping("/{filename}")
+  @GetMapping("/{id}")
+  public Optional<ImageFile> findById(@PathVariable Long id) {
+    return imageFileService.findById(id);
+  }
+
+  @GetMapping("/getByName/{filename}")
   public ResponseEntity<?> download(@PathVariable String filename) throws IOException {
     try {
       UrlResource resource = imageFileService.download(filename);

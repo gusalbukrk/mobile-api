@@ -25,6 +25,14 @@ public class ImageFileService {
 
   private final String DIR = "./images/";
 
+  public Iterable<ImageFile> findAll() {
+    return imageFileRepository.findAll();
+  }
+
+  public Optional<ImageFile> findById(Long id) {
+    return imageFileRepository.findById(id);
+  }
+
   public String upload(MultipartFile image) throws IOException {
     String originalFilename = image.getOriginalFilename();
     String extension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
@@ -62,9 +70,5 @@ public class ImageFileService {
 
     UrlResource resource = new UrlResource(path.toUri());
     return resource;
-  }
-
-  public Iterable<ImageFile> findAll() {
-    return imageFileRepository.findAll();
   }
 }
