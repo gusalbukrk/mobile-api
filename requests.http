@@ -296,3 +296,46 @@ GET http://localhost:8081/api/ordersListings/2-1/listing
 ###
 
 GET http://localhost:8081/api/listings/1/ordersListing
+
+###
+
+POST http://localhost:8081/api/images
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="image"; filename="cat.jpg"
+Content-Type: image/jpg
+
+< /home/gusalbukrk/Downloads/cat.jpg
+--WebAppBoundary--
+
+###
+
+POST http://localhost:8081/api/images
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="image"; filename="star.png"
+Content-Type: image/png
+
+< /home/gusalbukrk/Downloads/star.png
+--WebAppBoundary--
+
+###
+
+POST http://localhost:8081/api/images
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="image"; filename="man.webp"
+Content-Type: image/webp
+
+< /home/gusalbukrk/Downloads/man.webp
+--WebAppBoundary--
+###
+
+GET http://localhost:8081/api/images
+
+###
+
+GET http://localhost:8081/api/images/fc9b278b-57f8-4fdc-a5d5-50c3b97c174e.webp
