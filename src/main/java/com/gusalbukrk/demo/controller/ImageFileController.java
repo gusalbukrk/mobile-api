@@ -43,7 +43,7 @@ public class ImageFileController {
     return imageFileService.findById(id);
   }
 
-  @GetMapping("/getByName/{filename}")
+  @GetMapping("/findByName/{filename}")
   public ResponseEntity<?> download(@PathVariable String filename) throws IOException {
     try {
       UrlResource resource = imageFileService.download(filename);

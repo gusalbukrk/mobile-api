@@ -1,0 +1,67 @@
+POST http://localhost:8081/api/images
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="image"; filename="l1.jpg"
+Content-Type: image/jpg
+
+< ./images-bak/l1.jpg
+--WebAppBoundary--
+
+###
+
+POST http://localhost:8081/api/images
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="image"; filename="l12.jpg"
+Content-Type: image/jpg
+
+< ./images-bak/l12.jpg
+--WebAppBoundary--
+
+###
+
+POST http://localhost:8081/api/images
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="image"; filename="l2.jpg"
+Content-Type: image/jpg
+
+< ./images-bak/l2.jpg
+--WebAppBoundary--
+
+###
+
+POST http://localhost:8081/api/images
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="image"; filename="l3.jpg"
+Content-Type: image/jpg
+
+< ./images-bak/l3.jpg
+--WebAppBoundary--
+
+###
+
+POST http://localhost:8081/api/listings/1/images
+Content-Type:text/uri-list
+
+http://localhost:8081/api/images/1
+http://localhost:8081/api/images/2
+
+###
+
+POST http://localhost:8081/api/listings/2/images
+Content-Type:text/uri-list
+
+http://localhost:8081/api/images/3
+
+###
+
+POST http://localhost:8081/api/listings/3/images
+Content-Type:text/uri-list
+
+http://localhost:8081/api/images/4
