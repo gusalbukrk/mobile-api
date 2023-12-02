@@ -12,29 +12,29 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.gusalbukrk.demo.model.ImageFile;
-import com.gusalbukrk.demo.repository.ImageFileRepository;
+import com.gusalbukrk.demo.model.Image;
+import com.gusalbukrk.demo.repository.ImageRepository;
 
 @Service
-public class ImageFileService {
-  private ImageFileRepository imageFileRepository;
+public class ImageService {
+  private ImageRepository imageRepository;
 
-  public ImageFileService(ImageFileRepository imageFileRepository) {
-    this.imageFileRepository = imageFileRepository;
+  public ImageService(ImageRepository imageRepository) {
+    this.imageRepository = imageRepository;
   }
 
   private final String DIR = "./images/";
 
-  public Iterable<ImageFile> findAll() {
-    return imageFileRepository.findAll();
+  public Iterable<Image> findAll() {
+    return imageRepository.findAll();
   }
 
-  public Optional<ImageFile> findById(Long id) {
-    return imageFileRepository.findById(id);
+  public Optional<Image> findById(Long id) {
+    return imageRepository.findById(id);
   }
 
-  public String upload(MultipartFile image) throws IOException {
-    String originalFilename = image.getOriginalFilename();
+  public String upload(MultipartFile file) throws IOException {
+    String originalFilename = file.getOriginalFilename();
     String extension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
     String uniqueFilename = UUID.randomUUID().toString() + "." + extension;
 
@@ -47,26 +47,26 @@ public class ImageFileService {
       Files.createDirectories(path.getParent());
     }
 
-    byte[] bytes = image.getBytes();
+    byte[] bytes = file.getBytes();
 
     Files.write(path, bytes);
 
-    ImageFile imageFile = imageFileRepository.save(ImageFile.builder()
+    Image image = imageRepository.save(Image.builder()
         .name(uniqueFilename).build());
 
-    System.out.println(imageFile);
+    System.out.println(image);
 
     return "file uploaded successfully : " + path;
   }
 
-  public UrlResource download(String image) throws IOException {
-    Optional<ImageFile> imageFile = imageFileRepository.findByName(image);
+  public UrlResource download(String filename) throws IOException {
+    Optional<Image> image = imageRepository.findByName(filename);
 
-    if (!imageFile.isPresent()) {
+    if (!image.isPresent()) {
       throw new FileNotFoundException("Image not found");
     }
 
-    Path path = Paths.get(DIR + imageFile.get().getName());
+    Path path = Paths.get(DIR + image.get().getName());
 
     UrlResource resource = new UrlResource(path.toUri());
     return resource;

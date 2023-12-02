@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.gusalbukrk.demo.model.ImageFile;
-import com.gusalbukrk.demo.service.ImageFileService;
+import com.gusalbukrk.demo.model.Image;
+import com.gusalbukrk.demo.service.ImageService;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,34 +19,34 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/images")
-public class ImageFileController {
-  private ImageFileService imageFileService;
+public class ImageController {
+  private ImageService imageService;
 
-  public ImageFileController(ImageFileService imageFileService) {
-    this.imageFileService = imageFileService;
+  public ImageController(ImageService imageService) {
+    this.imageService = imageService;
   }
 
   @GetMapping("")
-  public Iterable<ImageFile> findAll() {
-    return imageFileService.findAll();
+  public Iterable<Image> findAll() {
+    return imageService.findAll();
   }
 
   @PostMapping("")
   public ResponseEntity<?> upload(@RequestParam("image") MultipartFile file) throws IOException {
-    String uploadImage = imageFileService.upload(file);
+    String uploadImage = imageService.upload(file);
     return ResponseEntity.status(HttpStatus.OK)
         .body(uploadImage);
   }
 
   @GetMapping("/{id}")
-  public Optional<ImageFile> findById(@PathVariable Long id) {
-    return imageFileService.findById(id);
+  public Optional<Image> findById(@PathVariable Long id) {
+    return imageService.findById(id);
   }
 
   @GetMapping("/findByName/{filename}")
   public ResponseEntity<?> download(@PathVariable String filename) throws IOException {
     try {
-      UrlResource resource = imageFileService.download(filename);
+      UrlResource resource = imageService.download(filename);
 
       if (resource.exists() || resource.isReadable()) {
         return ResponseEntity.status(HttpStatus.OK)

@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ImageFile {
+public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

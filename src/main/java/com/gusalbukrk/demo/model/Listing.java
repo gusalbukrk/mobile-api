@@ -67,5 +67,5 @@ public class Listing {
     // ensures that the combination of listing_id and image_id is unique in the table
     uniqueConstraints = @UniqueConstraint(columnNames = {"listing_id", "image_id"})
   )
-  private List<ImageFile> images;
+  private List<Image> images;
 }
