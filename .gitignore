@@ -32,4 +32,8 @@ build/
 ### VS Code ###
 .vscode/
 
-/images/
+/images/*
+!/images/l1.jpg
+!/images/l12.jpg
+!/images/l2.jpg
+!/images/l3.jpg

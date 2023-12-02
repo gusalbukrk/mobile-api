@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.gusalbukrk.demo.model.Buyer;
 import com.gusalbukrk.demo.model.Category;
+import com.gusalbukrk.demo.model.ImageFile;
 import com.gusalbukrk.demo.model.Listing;
 import com.gusalbukrk.demo.model.OrderListing;
 import com.gusalbukrk.demo.model.OrderListingId;
@@ -18,6 +19,7 @@ import com.gusalbukrk.demo.model.Seller;
 import com.gusalbukrk.demo.model.Tag;
 import com.gusalbukrk.demo.repository.BuyerRepository;
 import com.gusalbukrk.demo.repository.CategoryRepository;
+import com.gusalbukrk.demo.repository.ImageFileRepository;
 import com.gusalbukrk.demo.repository.OrderListingRepository;
 import com.gusalbukrk.demo.repository.ListingRepository;
 import com.gusalbukrk.demo.repository.OrderRepository;
@@ -38,6 +40,7 @@ public class DataLoader implements CommandLineRunner {
   private OrderRepository orderRepository;
   private OrderListingRepository orderListingRepository;
   private ReviewRepository reviewRepository;
+  private ImageFileRepository imageFileRepository;
 
   public void run(String ...args) throws Exception {
     Buyer buyer1 = Buyer.builder().email("buyer1@gmail.com").password("pass").cpf("000.111.222-33").build();
@@ -92,6 +95,15 @@ public class DataLoader implements CommandLineRunner {
 
     Review review1 = Review.builder().rating(5).comment("Amazing seller! I'd certainly recommend.").order(order2).build();
 
+    ImageFile image1 = ImageFile.builder().name("l1.jpg").build();
+    ImageFile image12 = ImageFile.builder().name("l12.jpg").build();
+    ImageFile image2 = ImageFile.builder().name("l2.jpg").build();
+    ImageFile image3 = ImageFile.builder().name("l3.jpg").build();
+
+    listing1.setImages(List.of(image1, image12));
+    listing2.setImages(List.of(image2));
+    listing3.setImages(List.of(image3));
+
     buyerRepository.save(buyer1);
     sellerRepository.save(seller1);
     listingRepository.saveAll(List.of(listing1, listing2, listing3));
@@ -100,5 +112,6 @@ public class DataLoader implements CommandLineRunner {
     orderRepository.saveAll(List.of(order1, order2));
     orderListingRepository.saveAll(List.of(orderListing1, orderListing2, orderListing3));
     reviewRepository.saveAll(List.of(review1));
+    imageFileRepository.saveAll(List.of(image1, image12, image2, image3));
   }
 }
