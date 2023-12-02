@@ -12,6 +12,7 @@ import com.gusalbukrk.demo.model.Category;
 import com.gusalbukrk.demo.model.Listing;
 import com.gusalbukrk.demo.model.OrderListing;
 import com.gusalbukrk.demo.model.OrderListingId;
+import com.gusalbukrk.demo.model.Review;
 import com.gusalbukrk.demo.model.Order;
 import com.gusalbukrk.demo.model.Seller;
 import com.gusalbukrk.demo.model.Tag;
@@ -20,6 +21,7 @@ import com.gusalbukrk.demo.repository.CategoryRepository;
 import com.gusalbukrk.demo.repository.OrderListingRepository;
 import com.gusalbukrk.demo.repository.ListingRepository;
 import com.gusalbukrk.demo.repository.OrderRepository;
+import com.gusalbukrk.demo.repository.ReviewRepository;
 import com.gusalbukrk.demo.repository.SellerRepository;
 import com.gusalbukrk.demo.repository.TagRepository;
 
@@ -35,6 +37,7 @@ public class DataLoader implements CommandLineRunner {
   private TagRepository tagRepository;
   private OrderRepository orderRepository;
   private OrderListingRepository orderListingRepository;
+  private ReviewRepository reviewRepository;
 
   public void run(String ...args) throws Exception {
     Buyer buyer1 = Buyer.builder().email("buyer1@gmail.com").password("pass").cpf("000.111.222-33").build();
@@ -87,6 +90,8 @@ public class DataLoader implements CommandLineRunner {
     //
     OrderListing orderListing3 = OrderListing.builder().id(orderListing3Id).quantity(2).build();
 
+    Review review1 = Review.builder().rating(5).comment("Amazing seller! I'd certainly recommend.").order(order2).build();
+
     buyerRepository.save(buyer1);
     sellerRepository.save(seller1);
     listingRepository.saveAll(List.of(listing1, listing2, listing3));
@@ -94,5 +99,6 @@ public class DataLoader implements CommandLineRunner {
     categoryRepository.saveAll(List.of(cat1, cat2, cat3));
     orderRepository.saveAll(List.of(order1, order2));
     orderListingRepository.saveAll(List.of(orderListing1, orderListing2, orderListing3));
+    reviewRepository.saveAll(List.of(review1));
   }
 }

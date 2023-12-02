@@ -355,3 +355,15 @@ Content-Type:text/uri-list
 
 http://localhost:8081/api/images/1
 # http://localhost:8081/api/images/2
+
+###
+
+GET http://localhost:8081/api/reviews/1
+
+###
+
+GET http://localhost:8081/api/reviews/1/order
+
+###
+
+GET http://localhost:8081/api/orders/2/review
