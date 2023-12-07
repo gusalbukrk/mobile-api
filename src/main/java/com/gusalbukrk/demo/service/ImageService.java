@@ -56,7 +56,8 @@ public class ImageService {
 
     System.out.println(image);
 
-    return "file uploaded successfully : " + path;
+    // return "file uploaded successfully : " + path;
+    return image.getId().toString();
   }
 
   public UrlResource download(String filename) throws IOException {
