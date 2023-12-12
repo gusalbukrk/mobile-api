@@ -1,3 +1,7 @@
+// populate database with dummy data
+// if left uncommented, would trigger error `duplicate entry` error
+// because `spring.jpa.hibernate.ddl-auto` is set to `update` instead of `create-drop`
+
 package com.gusalbukrk.demo.config;
 
 import java.util.Calendar;
@@ -42,7 +46,7 @@ public class DataLoader implements CommandLineRunner {
   private ReviewRepository reviewRepository;
   private ImageRepository imageRepository;
 
-  public void run(String ...args) throws Exception {
+  public void run(String... args) throws Exception {
     Buyer buyer1 = Buyer.builder().email("buyer1@gmail.com").password("pass").cpf("000.111.222-33").build();
 
     // System.out.println("!!!");
@@ -52,18 +56,22 @@ public class DataLoader implements CommandLineRunner {
     Seller seller1 = Seller.builder().email("seller1@gmail.com").password("pass").cnpj("11.222.333/0001-44").build();
 
     // https://stackoverflow.com/q/48784923
-    // using this approach, POJO creation requires explicitly setting id which is incorrect because
+    // using this approach, POJO creation requires explicitly setting id which is
+    // incorrect because
     // the id must be auto-generated
-    // Listing listing1 = new Listing(2, "Listing 1", null, 3.14F, 10, seller1, Collections.<Tag>emptyList(), Collections.<OrderListing>emptyList());
-    Listing listing1 = Listing.builder().name("Listing 1").description("Listing 1 description").price(3.14F).quantity(10).seller(seller1).build();
+    // Listing listing1 = new Listing(2, "Listing 1", null, 3.14F, 10, seller1,
+    // Collections.<Tag>emptyList(), Collections.<OrderListing>emptyList());
+    Listing listing1 = Listing.builder().name("Listing 1").description("Listing 1 description").price(3.14F)
+        .quantity(10).seller(seller1).build();
     Listing listing2 = Listing.builder().name("Listing 2").price(4.99F).quantity(5).seller(seller1).build();
     Listing listing3 = Listing.builder().name("Listing 3").price(9.99F).quantity(1).seller(seller1).build();
 
     Tag tag1 = Tag.builder().name("Tag 1").build();
     Tag tag2 = Tag.builder().name("Tag 2").build();
     Tag tag3 = Tag.builder().name("Tag 3").build();
-    
-    // error `object references an unsaved transient instance - save the transient instance before flushing`
+
+    // error `object references an unsaved transient instance - save the transient
+    // instance before flushing`
     // if Listing's `tag` field is not set to `CascadeType.PERSIST`
     // because at this point tags are not saved in the database yet
     listing1.setTags(List.of(tag1, tag3));
@@ -79,7 +87,8 @@ public class DataLoader implements CommandLineRunner {
     cal.set(Calendar.MONTH, 11);
     cal.set(Calendar.DATE, 17);
     Order order1 = Order.builder().date(new Date(cal.getTimeInMillis())).total(9.99F).buyer(buyer1).build();
-    Order order2 = Order.builder().date(new Date(Calendar.getInstance().getTimeInMillis())).total(6.28F).buyer(buyer1).build();
+    Order order2 = Order.builder().date(new Date(Calendar.getInstance().getTimeInMillis())).total(6.28F).buyer(buyer1)
+        .build();
 
     // order #1 has 2 listings
     OrderListingId orderListing1Id = OrderListingId.builder().orderId(1).listingId(1).build();
@@ -93,7 +102,8 @@ public class DataLoader implements CommandLineRunner {
     //
     OrderListing orderListing3 = OrderListing.builder().id(orderListing3Id).quantity(2).build();
 
-    Review review1 = Review.builder().rating(5).comment("Amazing seller! I'd certainly recommend.").order(order2).build();
+    Review review1 = Review.builder().rating(5).comment("Amazing seller! I'd certainly recommend.").order(order2)
+        .build();
 
     Image image1 = Image.builder().name("l1.jpg").build();
     Image image12 = Image.builder().name("l12.jpg").build();
