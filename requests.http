@@ -67,6 +67,10 @@ GET http://localhost:8081/api/users/search/findByEmailAndPassword?email=buyer1@g
 
 ###
 
+GET http://localhost:8081/api/users/search/findByEmail?email=buyer1@gmail.com
+
+###
+
 GET http://localhost:8081/api/listings
 
 ###
@@ -367,3 +371,23 @@ GET http://localhost:8081/api/reviews/1/order
 ###
 
 GET http://localhost:8081/api/orders/2/review
+
+###
+
+POST http://localhost:8081/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "u1@gmail.com",
+  "password": "pass1"
+}
+
+###
+
+POST http://localhost:8081/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "u1@gmail.com",
+  "password": "pass1"
+}
